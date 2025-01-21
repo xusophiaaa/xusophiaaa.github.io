@@ -22,12 +22,12 @@
       <h2>Firmware</h2>
       <pre><code>
         const int button = 2; // Button pin
-        const int red = 7; // Red LED pin
-        const int blue = 5; // Blue LED pin
-        const int green = 6; // Green LED pin
+        const int red = 6; // Red LED pin
+        const int blue = 3; // Blue LED pin
+        const int green = 5; // Green LED pin
         
         void setup() {
-          pinMode(13, OUTPUT); // Set pin 13 as output
+          pinMode(10, OUTPUT); // Set pin 10 as output
           pinMode(11, OUTPUT); // Set pin 11 as output
           pinMode(red, OUTPUT); // Set red LED pin as output
           pinMode(blue, OUTPUT); // Set blue LED pin as output
@@ -37,18 +37,17 @@
         
         void loop() {
           if (digitalRead(button) == HIGH) { // Check if button is pressed
-            digitalWrite(13, HIGH); // Turn on pin 13
+            digitalWrite(10, HIGH); // Turn off pin 10
             digitalWrite(11, HIGH); // Turn on pin 11
             digitalWrite(red, HIGH); // Turn on red LED
             digitalWrite(blue, LOW); // Turn off blue LED
             digitalWrite(green, LOW); // Turn off green LED
           } else {
+            digitalWrite(10, LOW);
             for (int i = 0; i < 255; i += 50) { // Loop with step of 50
               analogWrite(11, i); // Fade pin 11 up
-              analogWrite(13, i); // Fade pin 13 up
               delay(100); // Wait 100ms
               analogWrite(11, 255 - i); // Fade pin 11 down
-              analogWrite(13, 255 - i); // Fade pin 13 down
               delay(100); // Wait 100ms
               rainbow(i); // Call rainbow function
             }
@@ -70,12 +69,11 @@
           delay(50); // Wait 50ms
         }
       </code></pre>
-      <p>My code controls LEDs based on a button press. When I press the button, it turns on certain LEDs (red, pin 13, and pin 11) 
-        and turns off the others. If I don’t press the button, the LEDs fade in and out on pins 11 and 13, and the RGB LED cycles through 
+      <p>My code controls LEDs based on a button press. When I press the button, it turns on all the red LEDs. If I don’t press the button, the LEDs fade in and out pin 11 and the RGB LED cycles through 
         different colors in a "rainbow" effect using the rainbow() function. The loop handles both the button behavior and the LED animations.</p>
       <h2>Fig 3: Fade GIF</h2>
       <img src="fadegif.gif" /> 
-      <p>When the button is not pressed, the RGB led will fade between colors and the red LEDs will fade on and off. When
+      <p>When the button is not pressed, the RGB led will fade between colors and one of the red LEDs will fade on and off. When
          the button is pressed, all the LEDs will light up as a solid red.
       </p>
       <h2>Additional Questions:</h2>
