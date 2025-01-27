@@ -28,7 +28,9 @@
       <h2>Fig 4: Input Output GIF</h2>
       <img src="inoutgif.gif" /> 
       <p>The red LED dims as less light is received by the photoresistor.
-         The photoresistor sensor and output value are displayed on the LCD screen.
+         The photoresistor sensor and output value are displayed on the LCD screen and the 
+         serial monitor. Additionally, the serial monitor prints out the brightness level of 
+         the environment based on the photoresistor sensor value (dark, dimly lit, well lit, bright).
       </p>
       <h2>Firmware</h2>
       <pre><code>
@@ -58,14 +60,6 @@
         photoSensorValue = analogRead(photo); // read analog value from photoresistor
         int constrainVal = constrain(photoSensorValue, 200, 900); // constrain values b/w 200-900
         photoOutputValue = map(constrainVal, 200, 900, 0, 255); // map constrained value to a range of 0-255 for LED
-        // if the photo sensor value is below 200, the LED should be off
-        if (photoSensorValue < 200) {
-            photoOutputValue = 0;
-        }
-        // if the photo sensor value is above 900, the LED should be at max brightness
-        if (photoSensorValue > 900) {
-            photoOutputValue = 255;
-        }
         analogWrite(led, photoOutputValue); // adjust the brightness of the LED using PWM
         
         // print sensor value to Serial Monitor
@@ -74,6 +68,17 @@
         // print mapped output value for LED to Serial Monitor
         Serial.print("output is ");
         Serial.println(photoOutputValue);
+        // prints out a statement about the brightness of the environment depending 
+        // on the photoresistor sensor value
+        if (photoSensorValue > 800) {
+            Serial.println("The environment is bright.");
+        } else if (photoSensorValue > 500) {
+            Serial.println("The environment is well-lit.");
+        } else if (photoSensorValue > 200) {
+            Serial.println("The environment is dimly lit.");
+        } else {
+            Serial.println("The environment is dark.");
+        }
         
         lcd.setCursor(0, 0); // set the cursor to column 0, line 0
         lcd.print("                "); // clear line by printing 16 spaces
@@ -89,15 +94,19 @@
       </code></pre>
       <h2>Additional Questions:</h2>
       <h3>1. In your voltage divider, can the variable resistor be either R1 or R2 or does it need to be one or the other?</h3>
+      <img src="inoutq1.jpg" /> 
       <p>
         Yes, the variable resistor can be either R1 or R2, but its position affects how the output 
         voltage behaves. Using the voltage divider equation, if the variable resistor is R1, then as R1 increases, Vout decreases (inverse relationship). 
         If R2 is the variable resistor, as R2 increases, Vout increases (direct relationship).
       </p>
-      <h2>Fig 5: Question 2 Calculations</h2>
       <h3>2. Draw a graph where the x-axis is time and the y-axis is voltage. Plot the voltage at V-measure of your voltage 
         divider of your shared gif.
       </h3>
+      <img src="inoutq2.jpg" /> 
+      <p>I calculated the voltage measure by taking the photoresistor sensor value at a given time, dividing it by 1023, and then 
+        multiplying it by 5V.
+      </p>
       <h3>3. AnalogWrite and analogRead are respectively 8-bit and 10-bit values. Imagine you had 10-bit PWM and a 16-bit 
         analog-to-digital converter instead. How would this change your map() code?
       </h3> 
