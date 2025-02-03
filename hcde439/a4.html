@@ -91,8 +91,10 @@
         and the y-axis the voltage at pin 9 with respect to ground.</h3>
       <img src="librariesq1.jpg" /> 
       <p>
-        The pulse width of a servo motor is around 1-1.5 ms which is why the peaks appear so narrow. 
-        There is also a 100 ms delay between angle updates, which is the reason for the wider segments at 0 V.
+        The pulse width of a servo motor is around 1-1.5 ms which is why the peaks appear so narrow. During those ~1 ms 
+        periods, the voltage goes up to 5V.
+        There is a peak every 20 ms because the servo signal has a 20 ms period, for a total of 100 peaks 
+        in a 2 second time period.
       </p>
 
       <h3>2. Your input device is slightly broken, leading it to give us an erroneous reading 1% of the time. 
