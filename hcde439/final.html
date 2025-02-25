@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <title>Sophia Ling's HCDE 439 Final Project Proposal!</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Sophia Ling's Project Proposal!</h1>
+    <div class="header">
+      <h2>Project Concept/Motivation:</h2>
+      <p>
+        I want to build a smart trash can that only opens for humans and prevents pets (like my 
+        Japanese Akita) from accessing it. Regular trash cans can easily be broken into by pets 
+        like my large dog, leading to messes. This system will use motion, height detection, 
+        and hand proximity sensing to ensure that only a human can open it.
+      </p>
+      <img src="finalinitialsketch.jpg"/>
+     
+      <h2>Anticipated Bill of Materials</h2>
+      <ul>
+        <li>PIR Motion Sensor (detects movement)</li>
+        <li>Ultrasonic Sensor (measures height to distinguish humans vs pets)</li>
+        <li>IR Proximity Sensor (detects hand near the lid for final verification)</li>
+        <li>Servo Motor (opens the lid)</li>
+        <li>Assorted resistors (for current-limiting)</li>
+        <li>Jumper wires (for connections)</li>
+        <li>Modified trash bin lid & small trash can or cardboard for building own trash can</li>
+        <li>Batteries (for portability)</li>
+      </ul>
+      <h2>Timeline and contingency plans:</h2>
+      <p>Week 1 - gather components and test individual sensors, write and test basic Arduino 
+        code to open lid when motion & height are detected, integrate IR sensor
+    </p>
+    <p>Week 2 - Assemble components into functional prototype inside trash can, fine-tune sensor 
+        thresholds, final testing – potentially add green/red LEDs
+    </p>
+    <p>
+        If IR sensor fails, simplify to just height + motion 
+    </p>
+    </div>
+  </body>
+</html>
